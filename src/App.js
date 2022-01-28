@@ -1,25 +1,28 @@
-import logo from './logo.svg';
 import './App.css';
 
+import Letrero from './Letrero';
+import Lista from './Lista';
+import {useState} from "react";
+
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const [coders, setCoders] = useState([]);
+    const [coder, setCoder] = useState("");
+
+    function addCoder() {
+        // spread operator
+        setCoders([...coders, coder]);
+    }
+
+
+    return (
+        <div className="App">
+            <input onChange={event => setCoder(event.target.value) } type="text"/>
+            <button onClick={addCoder}>Nueva coder</button>
+            <Letrero texto="🍕" diaDeLaSemana="viernes"/>
+            <Lista elements={coders}/>
+        </div>
+    );
 }
 
 export default App;
